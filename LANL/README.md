@@ -8,7 +8,7 @@ $ jupyter notebook
 
 $ jupyter lab
 
-Oopen blog_winevents.ipynb using a Python 3 kernel. Recommend using Anaconda to have all of the packages installed. Additional packages beyond those in Anaconda:
+Open blog_winevents.ipynb using a Python 3 kernel. Recommend using Anaconda to have all of the packages installed. Additional packages beyond those in Anaconda:
 
 $ conda install wget
 
