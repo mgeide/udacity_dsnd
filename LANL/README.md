@@ -3,18 +3,18 @@
 ## Installation
 
 Launch Jupyter Notebook or Lab:
+
 $ jupyter notebook
+
 $ jupyter lab
 
-And open blog_winevents.ipynb using a Python 3 kernel.
-Recommend using Anaconda to have all of the packages installed.
+Oopen blog_winevents.ipynb using a Python 3 kernel. Recommend using Anaconda to have all of the packages installed. Additional packages beyond those in Anaconda:
 
-Additional packages beyond those in Anaconda:
 $ conda install wget
+
 $ conda install -c conda-forge umap-learn
 
-Note: wget is only needed if you're downloading the data via the notebook
-Note: incorporating umap logic in notebook is still a work in progress
+Note: wget is only needed if you're downloading the data via the notebook, and incorporating umap logic in notebook is still a work in progress.
 
 
 ## Motivation
@@ -23,7 +23,7 @@ Microsoft Windows Event (WinEvent) logs provide a record of events occurring wit
 
 2017 LANL Unified Host and Network data set: https://csr.lanl.gov/data/2017.html
 
-This work$ is motivated by: (i) the need for cyber security analytics to incorporate contextual information early into the process verse being joined in during manual triaging, and (ii) a concern that valuable latent features remain hidden or unused by security analytics. I explore the following questions:
+This work is motivated by: (i) the need for cyber security analytics to incorporate contextual information early into the process verse being joined in during manual triaging, and (ii) a concern that valuable latent features remain hidden or unused by security analytics. I explore the following questions:
 
 * What are some features we can add into WinEvents and methods of engineering them?
 * Can we reduce dimensionality and learn from feature weights of the principal components?
@@ -68,8 +68,5 @@ Clusters 1 & 2 contain almost 80% of the process started events, while 0, 3, and
 
 * Thank you to my coworker Jacob Baxter for his help and support when I got stuck, whether it is something annoying with Pandas or helping explain a concept.
 * Thanks to the Udacity Data Science Nanodegree program for the hands-on lessons.
-Blog post describing the approach:
-https://medium.com/@mike_71681/exploring-latent-features-in-winevent-process-logs-113581564be4
 
-Context is often missing within the raw log entries and must be added back in for meaningful analysis and information. This Notebook details the featuring engineering, principal component analysis (PCA), and K-means clustering steps that I took for classifying started processes logged (Event ID 4688) in the 2017 Los Alamos National Laboratory’s (LANL) dataset.
 
