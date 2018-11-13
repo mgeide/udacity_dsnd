@@ -23,7 +23,7 @@ from sklearn.metrics import confusion_matrix, classification_report
 
 '''
 # Verb extractor logic for additional feature - code from Udacity Nanodegree lecture
-# Ignoring this feature for now
+# Ignoring this feature for now - cross validation time was limited
 class StartingVerbExtractor(BaseEstimator, TransformerMixin):
 
     def starting_verb(self, text):
@@ -116,17 +116,32 @@ def build_model(n_jobs=1):
             ('clf', MultiOutputClassifier(RandomForestClassifier()))
         ])
 
-        # Caution: this will take a long time to GridSearch w/o n_jobs=-1
-        parameters = {
-            'text_pipeline__vect__ngram_range': ((1, 1), (1, 2)),
-            'text_pipeline__vect__max_df': (0.5, 0.75, 1.0),
-            'text_pipeline__vect__max_features': (None, 5000, 10000),
-            'text_pipeline__tfidf__use_idf': (True, False),
-            'clf__estimator__n_estimators': [50, 100, 200],
-            'clf__estimator__min_samples_split': [2, 3, 4],
-        }
+        cross_val = 3
+        if n_jobs==1:
+            # Drastically reduce the params
+            parameters = {
+                'text_pipeline__vect__ngram_range': [(1, 1)],
+                'text_pipeline__vect__max_df': [0.75],
+                'text_pipeline__vect__max_features': [None],
+                'text_pipeline__tfidf__use_idf': [True],
+                'clf__estimator__n_estimators': [100, 200],
+                'clf__estimator__min_samples_split': [2, 3],
+            }
+        else:
+            cross_val = 5
+                                                     
+            # Caution: this will take a long time to GridSearch w/o being able to run multiple jobs
+            # recommend n_jobs=-1 after bug fixed in joblib
+            parameters = {
+                'text_pipeline__vect__ngram_range': [(1, 1), (1, 2)],
+                'text_pipeline__vect__max_df': [0.5, 0.75, 1.0],
+                'text_pipeline__vect__max_features': [None, 5000, 10000],
+                'text_pipeline__tfidf__use_idf': [True, False],
+                'clf__estimator__n_estimators': [50, 100, 200],
+                'clf__estimator__min_samples_split': [2, 3, 4],
+            }
 
-        cv = GridSearchCV(pipeline, param_grid=parameters, n_jobs=n_jobs, cv=5, verbose=100)
+        cv = GridSearchCV(pipeline, param_grid=parameters, n_jobs=n_jobs, cv=cross_val, verbose=100)
 
         return cv
     except Exception as e:
