@@ -7,6 +7,8 @@ This project ingests and builds a model from a data set containing real messages
 ### Instructions
 1. Run the following commands in the project's disaster_ide directory to set up your database and model.
 
+    - Change to disaster_ide directory (this is the application, the notebooks was the scratch work used for this code)
+        `cd disaster_ide`
     - To run ETL pipeline that cleans data and stores in database
         `python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db`
     - To run ML pipeline that trains classifier and saves
