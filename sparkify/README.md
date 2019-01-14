@@ -9,6 +9,7 @@ This project builds models from a streaming music provider's logs in order to pr
 * WillChurnSoon - label meaning that the user cancels in the time bin or the next (i.e., one of the previous labels is true)
 
 Further explanation of the methodology and details/results from this project were presented in a blogpost here:
+https://medium.com/@mike_71681/building-user-churn-models-in-pyspark-3f55e4f49f4
 
 ### Overview of Files
 
